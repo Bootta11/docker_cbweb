@@ -1,0 +1,43 @@
+version: '3'
+services:
+  nginx:
+    image: nginx:perl
+    ports: 
+      - "80:80"
+    volumes:
+      - ./nginx_confs:/etc/nginx/conf.d/
+      - ${PROJECT_PATH}:/var/www/html
+    depends_on: 
+      - fpmcbweb
+    restart: always
+    networks:
+      - cbweb
+  fpmcbweb:
+    build: .
+    container_name: "fpmcbweb"
+    ports:
+      - "9800:9000"
+    volumes:
+      - ${PROJECT_PATH}:/var/www/html
+    networks:
+      - cbweb
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "${MONGO_EXPOSED_ON_PORT}:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
+    networks:
+      - cbweb
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - "${REDIS_EXPOSED_ON_PORT}:6379"
+    networks:
+      - cbweb
+networks:
+  cbweb:
+    driver: bridge
