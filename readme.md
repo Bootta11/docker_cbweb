@@ -77,7 +77,7 @@ ADPERIO_MONGO_DB_DATABASE=adperio_pre_imported
 MONGO_COMPLIANCE_HOST=mongo
 MONGO_COMPLIANCE_DB=compliance_db
 
-MONGO_MEGASTREAM_HOST=mongo
+MONGO_MEGASTREAM_HOST=mongo:27017
 MONGO_MEGASTREAM_DB=megastream
 
 ... rest of .env file is like normal
