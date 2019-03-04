@@ -106,9 +106,11 @@ command and wait until it finishes.
 If containers comaposed build project. Go to project folder and run commands:
 ```
 composer install
+npm install
+npm install --global gulp-cli
 gulp build  // install gulp cli
 ```
-
+Use node 8 version(tested on 8.14.0 and its working)with npm 6.4 version. To switch node versions use ```nvm``` or for Windows ```nvmw```.
 ## Use site
 If all gone as expected site project is live :).
 
